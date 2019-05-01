@@ -1,13 +1,14 @@
 
 /* this adds the Moving Average library
- *  The moving average library allows continiously average the last 
- *  5, 10, or 300 values 
+ *  The moving average library allows continiously average a bunch of values
+ *  
+ *  install this library by clicking on Tools > Manage Library and searching for the movingAvg library 
  */
 #include <movingAvg.h>
 
 //number of samples to include in the sound moving average play with this number - values between 10 and 300 will probably work
-//more samples will make the lights easier to read, but there is a tradeoff in instantnious accuracy
-#define
+//more samples will make the lights easier to read, but there is a tradeoff in instantanious accuracy
+#define SAMPLES 30
 // create a variable of the type "movingAvg" to hold SAMPLE number of samples
 movingAvg audioAverage(SAMPLES);
 // create a variable to hold the current average value
@@ -24,16 +25,12 @@ const int Yel2 = 6;
 const int Red1 = 5;
 const int Red2 = 4; 
 
-//create variables for holding the light values
-int green = 0;
-int yellow = 0;
-int red = 0;
 
 void setup() {
   delay(1000); // wait for 1000 ms (1 second) 
   Serial.begin(9600);
   Serial.println(F("Starting up..."));
-  pinMode(analog_sound, INPUT);
+  pinMode(analog_sound, INPUT); //set up the analog input pin as an INPUT pin
   //The section below this sets up all the lights
   pinMode(Grn1, OUTPUT);
   pinMode(Grn2, OUTPUT);
@@ -43,18 +40,16 @@ void setup() {
   pinMode(Red2, OUTPUT);
 
   // zero out the audio average - make sure there's no random data in there
-  audioAverage.begin();
-  audioAverage.reset();
+  audioAverage.begin(); //this sets everything out
+  audioAverage.reset(); //this zeros out all the values
 }
 
+
+// this loop runs forever over and over again
 void loop() {
- 
   
-  int analog_audioVal = 0; //set the analog audio value to 0
-  int digital_audioVal = 0; //set the digital audio value to 0
   analog_audioVal = analogRead(analog_sound);   //read a value between 0 and 1023 on the analog_sound pin
 
-  
   currentAudioAvg = audioAverage.reading(analog_audioVal); //store a new reading and get the current average
 
   /*
@@ -93,12 +88,9 @@ void loop() {
   }
   
   
-  
-
+  // This prints out the current average to the serial monitor. Open the serial monitor by clicking Tools > Serial Monitor
   Serial.print(F("avg: "));
   Serial.println(currentAudioAvg);
-//  Serial.print(F("val: "));
-//  Serial.println(analog_audioVal);
 
 
 
