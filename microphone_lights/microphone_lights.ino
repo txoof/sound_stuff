@@ -47,7 +47,7 @@ void setup() {
 
 // this loop runs forever over and over again
 void loop() {
-  
+  int analog_audioVal = 0;
   analog_audioVal = analogRead(analog_sound);   //read a value between 0 and 1023 on the analog_sound pin
 
   currentAudioAvg = audioAverage.reading(analog_audioVal); //store a new reading and get the current average
