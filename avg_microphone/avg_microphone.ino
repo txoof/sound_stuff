@@ -33,7 +33,7 @@ void loop() {
   analog_audioVal = analogRead(analog_sound);   //read a value between 0 and 1023
   currentAudio = audioAverage.reading(analog_audioVal); //get the current audio average  
 
-  Serial.print(F("avg: "));
+//  Serial.print(F("avg: "));
   Serial.println(currentAudio);
 
   delay(20); //This sets the delay between each cycle
