@@ -14,11 +14,11 @@ movingAvg audioAverage(SAMPLES);
 // create a variable to hold the current average value
 int currentAudioAvg = 0;
 
-//sets the pin numbers that will read from the sound module
+//sets the variable and pin numbers that will read from the sound module
 const int  analog_sound = A0;    //the analog pin gives values between 0 and 1023
 
 //sets the pins that are attached to lights
-const int Grn1 = 9;
+const int Grn1 = 9; //Grn1 <-variable name; 9 <- pin number
 const int Grn2 = 8;
 const int Yel1 = 7;
 const int Yel2 = 6;
@@ -89,7 +89,7 @@ void loop() {
   
   
   // This prints out the current average to the serial monitor. Open the serial monitor by clicking Tools > Serial Monitor
-  Serial.print(F("avg: "));
+  Serial.print(F("avg: ")); // remove this line by adding a "//" if you do not want to have the word "avg: " show up in your data
   Serial.println(currentAudioAvg);
 
 
